@@ -128,7 +128,31 @@
     <script src="js/slotmachine.min.js"></script>
     <script>
 
-  
+      function Time(){
+            var StartTime = new Date("1/28/2018"); //截止时间(月 日 年)
+            var NowTime   = new Date();
+            var time      = NowTime.getTime() - StartTime.getTime();
+            
+            var DD = Math.floor(time/(1000 * 60 * 60 * 24));
+            var HH = Math.floor(time/(1000*60*60)) % 24;
+            var MM = Math.floor(time/(1000*60)) % 60;
+            var SS = Math.floor(time/1000) % 60;
+            var Remain=document.getElementById("page").getElementsByTagName('span');
+
+            for(var i=0; i <Remain.length; i++){
+                if(HH < 10) HH = "0" + HH;
+                if(MM < 10) MM = "0" + MM;
+                if(SS < 10) SS = "0" + SS;
+                Remain[i].innerHTML = DD + '天' + HH + '时' + MM + '分' + SS + '秒';
+            }
+            setTimeout("Time()", 1000);
+	}
+	window.onload=Time;
+    
+    $(document).ready(function (){
+        $("#marquee").marquee();
+      });
+
 
 // ------------------
       $(document).foundation();
@@ -226,31 +250,7 @@
           		
           };
 
-        function Time(){
-            var StartTime = new Date("1/28/2018"); //截止时间(月 日 年)
-            var NowTime   = new Date();
-            var time      = NowTime.getTime() - StartTime.getTime();
-            
-            var DD = Math.floor(time/(1000 * 60 * 60 * 24));
-            var HH = Math.floor(time/(1000*60*60)) % 24;
-            var MM = Math.floor(time/(1000*60)) % 60;
-            var SS = Math.floor(time/1000) % 60;
-            var Remain=document.getElementById("page").getElementsByTagName('span');
-
-            for(var i=0; i <Remain.length; i++){
-                if(HH < 10) HH = "0" + HH;
-                if(MM < 10) MM = "0" + MM;
-                if(SS < 10) SS = "0" + SS;
-                Remain[i].innerHTML = DD + '天' + HH + '时' + MM + '分' + SS + '秒';
-            }
-            setTimeout("Time()", 1000);
-	}
-	window.onload=Time;
-    
-    $(document).ready(function (){
-        $("#marquee").marquee();
-      });
-
+ 
       })();
     </script>
 </body>
